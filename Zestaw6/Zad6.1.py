@@ -9,6 +9,7 @@ class TestTime(unittest.TestCase):
     def test_print(self):
         self.assertEqual(str(Time(3)), "00:00:03")
         self.assertEqual(repr(Time(3)), "Time(3)")
+        self.assertNo
 
     def test_cmp(self):
         # Trzeba sprawdzać ==, !=, >, >=, <, <=.
