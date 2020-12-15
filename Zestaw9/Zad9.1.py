@@ -70,7 +70,9 @@ class SingleList:
             self.tail = other.tail
             other.head = None
             other.tail = None
+            self.length += other.length
 
     def clear(self):  # czyszczenie listy
         self.head = None
         self.tail = None
+        self.length = 0
