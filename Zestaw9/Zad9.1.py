@@ -57,12 +57,20 @@ class SingleList:
         # Dla pustej listy rzuca wyjątek ValueError.
         if not self.head:
             raise ValueError("Próba usuniecia elementu z pustej listy")
+        elif self.length == 1:
+            current_tail = self.tail
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return current_tail
         else:
             current_node = self.head
+            removed_tail = self.tail
             while current_node.next != self.tail:
                 current_node = current_node.next
             current_node.next = None
             self.tail = current_node
+            return removed_tail
 
     def merge(self, other):  # klasy O(1)
         if other.head:
@@ -71,6 +79,7 @@ class SingleList:
             other.head = None
             other.tail = None
             self.length += other.length
+            other.length = None
 
     def clear(self):  # czyszczenie listy
         self.head = None
