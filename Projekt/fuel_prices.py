@@ -1,6 +1,7 @@
-from Projekt.fuels import *
 from bs4 import BeautifulSoup
 from requests import get as http_get
+
+from Projekt.fuels import *
 
 URL = "https://www.orlen.pl/PL/DlaBiznesu/HurtoweCenyPaliw/Strony/default.aspx"
 
@@ -67,14 +68,21 @@ def get_date():
     soup = BeautifulSoup(page.content, "html.parser")
     tables = soup.findAll("table",
                           {
-                            "class": "s4-wpTopTable",
-                            "border": "0",
-                            "cellpadding": "0",
-                            "width": "100%"
+                              "class": "s4-wpTopTable",
+                              "border": "0",
+                              "cellpadding": "0",
+                              "width": "100%"
                           })
     date_paragraph = tables[1].findChildren("p")[0]
     spans = date_paragraph.findChildren("span")
     return spans[0].text
+
+
+def store_fuels_to_file(fuels):
+    current_date = get_date()
+    with open("fuels {}.txt".format(current_date), "w", encoding="utf-8") as file:
+        for fuel in fuels:
+            file.write(str(fuel) + "\n")
 
 
 if __name__ == '__main__':
@@ -85,3 +93,8 @@ if __name__ == '__main__':
 
     for fuel in fuels:
         print(fuel)
+
+    store = input("Zapisać ceny do pliku? y/n : ")
+
+    if store.lower() == "y":
+        store_fuels_to_file(fuels)
