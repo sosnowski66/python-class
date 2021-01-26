@@ -84,6 +84,8 @@ def store_fuels_to_file(fuels):
         for fuel in fuels:
             file.write(str(fuel) + "\n")
 
+        return file.name
+
 
 if __name__ == '__main__':
     date = get_date()
@@ -94,7 +96,9 @@ if __name__ == '__main__':
     for fuel in fuels:
         print(fuel)
 
-    store = input("Zapisać ceny do pliku? y/n : ")
+    store = input("\nZapisać ceny do pliku? y/n : ")
 
     if store.lower() == "y":
-        store_fuels_to_file(fuels)
+        filename = store_fuels_to_file(fuels)
+        print("\nZapisano dane do pliku ", filename)
+
