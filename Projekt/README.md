@@ -1,6 +1,6 @@
-#Fuel prices
+# Fuel prices
 
-##Spis treści
+## Spis treści
 * [Wprowadzenie](#wprowadzenie)
 * [Technologie](#technologie)
 * [Uruchomienie](#uruchomienie)
